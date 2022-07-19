@@ -11,6 +11,9 @@
             width: 600px;
             border-radius: 10px;
             background-color: rgb(202, 0, 125);
+            position: absolute;
+            top: 0px;
+            left: 0px;
         }
 
         #tittle {
@@ -24,6 +27,48 @@
             padding: 8px 8px;
         }
     </style>
+
+    <script>
+
+        var jog;
+        var vel;
+        var dx;
+        var dy;
+        var px;
+        var py;
+        var anima;
+
+        function inicia() {
+            vel = 3;
+            dx = 1;
+            dy = 0;
+            px = 0;
+            py = 0;
+            jog = document.getElementById("main");
+            jog.addEventListener("click", function (event){
+
+                cancelAnimationFrame(game);
+                
+            })
+    
+            game();
+        }
+
+        function game() {
+            px += dx * vel;
+            jog.style.left = px + "px";
+            if(px > 760){
+                dx = -1;
+            }else if(px < 0){
+                dx = 1;
+            }
+            anima = requestAnimationFrame(game);
+        }
+
+        
+        window.addEventListener("load", inicia);
+
+    </script>
 </head>
 <body>
     <div id="main">
